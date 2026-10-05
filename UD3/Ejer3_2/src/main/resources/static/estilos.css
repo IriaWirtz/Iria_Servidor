@@ -1,0 +1,14 @@
+td, th{
+    border-style: solid;
+    border-width: 2px;
+}
+
+.verde{
+    background-color: lime;
+    color: green;
+}
+
+.rojo{
+    background-color: pink;
+    color: red;
+}
