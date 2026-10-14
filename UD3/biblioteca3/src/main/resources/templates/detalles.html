@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalles Libros</title>
+    <link rel="stylesheet" th:href="@{/estilos.css}"/>
+</head>
+<body>
+<header>
+    <h1 th:text="${biblioteca[id].titulo}"></h1>
+</header>
+
+<main>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>AUTOR</th>
+            <th>NÚMERO DE PÁGINAS</th>
+            <th>PRESTADO</th>
+
+
+        </tr>
+        <tr>
+            <td th:text="${biblioteca[id].id}"></td>
+            <td th:text="${biblioteca[id].autor}"></td>
+            <td th:text="${biblioteca[id].numPag}"></td>
+            <td th:text="${biblioteca[id].prestado}"></td>
+        </tr>
+
+
+    </table>
+
+
+</main>
+
+</body>
+</html>

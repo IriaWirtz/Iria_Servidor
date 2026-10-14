@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Biblioteca Bate Galáctico</title>
+    <link rel="stylesheet" th:href="@{/estilos.css}"/>
+</head>
+<body>
+    <h1>Biblioteca</h1>
+
+   <form method="get" th:action="@{/index}">
+       <label>
+       <select name="prestado">
+       <option value="">Ver todo</option>
+       <option value="true">Ver prestados</option>
+       <option value="false">Ver disponibles</option>
+       </select>
+       </label>
+
+    <button type="submit">Filtrar</button>
+   </form>
+
+    <table>
+        <tr>
+            <th>Título</th>
+            <th>Prestado</th>
+            <th>Enlace</th>
+            <th>Cambiar estado</th>
+
+        </tr>
+
+        <tr th:each="libro : ${biblioteca}">
+            <td th:text="${libro.titulo}"></td>
+            <td th:text="${libro.prestado}"></td>
+            <td><a th:href="${libro.id}">detalles</a></td>
+
+            <td><button type="submit">Cambiar</button></td>
+        </tr>
+
+    </table>
+
+</body>
+</html>
