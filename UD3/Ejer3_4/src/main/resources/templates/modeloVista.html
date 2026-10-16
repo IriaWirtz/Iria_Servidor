@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Módulos</title>
+</head>
+<body>
+<h1>Listado de Módulos</h1>
+
+<div>
+    <a th:href="@{/modeloVista}">Todos</a>
+    <a th:href="@{/modeloVista(curso=1)}">Modulos de primero</a>
+    <a th:href="@{/modeloVista(curso=2)}">Modulos de segundo</a>
+
+</div>
+
+    <ul th:each="modulo : ${modulos}">
+
+        <li  th:text="${modulo.nombre}"></li>
+        <li><a th:href="@{/modeloVista/{id}(id = ${modulo.id})}">Mostrar detalles</a></li>
+    </ul>
+
+<form method = "GET" th:action="@{/modeloVista}">
+    <label>
+    <select name = "curso">
+        <option value="">Todos</option>
+        <option value="1">Modulos de primero</option>
+        <option value="2">Modulos de segundo</option>
+    </select>
+    </label>
+    <button type="submit">Filtrar</button>
+
+</form>
+
+</body>
+</html>

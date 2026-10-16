@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalles</title>
+</head>
+<body>
+
+  <header>
+    <h1 th:text="${modulo.nombre}"></h1>
+
+  </header>
+
+<main>
+  <table>
+    <tr>
+      <th>NOMBRE</th>
+      <th>CURSO</th>
+      <th>HORAS</th>
+
+
+    </tr>
+
+    <tr>
+      <td th:text="${modulo.nombre}"></td>
+      <td th:text="${modulo.curso}"></td>
+      <td th:text="${modulo.horas}"></td>
+    </tr>
+
+
+
+  </table>
+
+
+
+</main>
+
+</body>
+</html>

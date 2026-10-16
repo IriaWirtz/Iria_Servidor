@@ -30,7 +30,7 @@ public class Controlador {
         return "index";
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/index/{id}")
     public String mostrarDetalles(@PathVariable Long id, Model model){
 
 
@@ -42,9 +42,9 @@ public class Controlador {
         return biblioteca.stream().filter(x -> prestado == x.isPrestado() || prestado == null).collect(Collectors.toList());
     }
 
-    @PostMapping("/{id}/editar")
+    @PostMapping("/biblioteca/toggle/{id}")
 
-    public String cambiarEstado(@PathVariable long id, @ModelAttribute("prestado") Boolean prestado){
+    public String cambiarEstado(@PathVariable long id){
         for (int i = 0; i < biblioteca.size(); i++) {
             if (biblioteca.get(i).getId() == id) {
                 Libro l1 = biblioteca.get(i);
@@ -53,7 +53,7 @@ public class Controlador {
                 return "redirect:/index";
             }
         }
-        return "redirect:/index";
+        return "redirect:/libro-no-encontrado";
     }
 
 

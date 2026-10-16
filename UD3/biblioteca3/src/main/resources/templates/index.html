@@ -32,9 +32,13 @@
         <tr th:each="libro : ${biblioteca}">
             <td th:text="${libro.titulo}"></td>
             <td th:text="${libro.prestado}"></td>
-            <td><a th:href="${libro.id}">detalles</a></td>
+            <td><a th:href="@{/index/{id}(id =${libro.id})}">detalles</a></td>
+           <td> <form th:action="@{/biblioteca/toggle/{id} (id =${libro.id})}" method="post">
 
-            <td><button type="submit">Cambiar</button></td>
+               <button type="submit">Cambiar</button>
+
+           </form></td>
+
         </tr>
 
     </table>
