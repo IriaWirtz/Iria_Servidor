@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Listado de inscripciones</title>
+</head>
+<body>
+
+<h1>Inscripciones realizadas</h1>
+
+<nav>
+    <a th:href="@{/inscripciones}">Listado</a>
+    <a th:href="@{/inscripciones/nueva}">Nueva inscripción</a>
+</nav>
+
+<p th:if="${#lists.isEmpty(inscripciones)}">
+    Todavía no hay inscripciones.
+</p>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>Nombre</th>
+        <th>Correo electrónico</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="i : ${inscripciones}">
+        <td th:text="${i.nombre}"></td>
+        <td th:text="${i.correo}"></td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

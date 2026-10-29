@@ -1,6 +1,7 @@
 package org.example.biblioteca3.Controller;
 
 import org.example.biblioteca3.Model.Libro;
+import org.example.biblioteca3.Repository.Repositorio;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -12,6 +13,7 @@ import java.util.stream.Collectors;
 @Controller
 public class Controlador {
     List<Libro> biblioteca = new ArrayList<>();
+    private Repositorio librosRepo;
 
     public Controlador() {
         inicializarBiblio();

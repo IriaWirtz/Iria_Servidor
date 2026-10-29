@@ -3,13 +3,26 @@ package org.example.ejer3_5.Modelo;
 public class Inscripcion {
     private String nombre, correo, comentarios;
     private Boolean turno, aceptaNormas;
+    private Long id;
 
-    public Inscripcion(String nombre, String correo, String comentarios, Boolean turno, Boolean aceptaNormas) {
+    public Inscripcion(Long id, String nombre, String correo, String comentarios, Boolean turno, Boolean aceptaNormas) {
+        this.id = id;
         this.nombre = nombre;
         this.correo = correo;
         this.comentarios = comentarios;
         this.turno = turno;
         this.aceptaNormas = aceptaNormas;
+    }
+
+    public Inscripcion() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getNombre() {
