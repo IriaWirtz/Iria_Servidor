@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestion de empleados</title>
+</head>
+<body>
+
+<h1>EMPRESA BATE GALÁCTICO</h1>
+
+<table>
+    <tr>
+    <th>ID</th>
+    <th>Nombre</th>
+    <th>Email</th>
+    <th>Salario</th>
+    <th>Editar</th>
+    <th>Borrar</th>
+    </tr>
+    <tr th:each="empleado : ${lista}">
+        <td th:text="${empleado.id}"></td>
+        <td th:text="${empleado.nombre}"></td>
+        <td th:text="${empleado.email}"></td>
+        <td th:text="${empleado.salario}"></td>
+
+       <td>
+           <form th:method="get" th:action="@{/empleados/{id}/editar(id = ${empleado.id})">
+           <button type="submit">Editar</button>
+           </form>
+
+       </td>
+        <td>
+            <form th:method="get" th:action="@{/empleados/{id}/borrar(id = ${empleado.id})">
+            <button type="submit">Borrar</button>
+            </form>
+
+        </td>
+
+
+
+
+    </tr>
+
+
+</table>
+
+</body>
+</html>

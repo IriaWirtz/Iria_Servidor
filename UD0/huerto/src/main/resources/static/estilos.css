@@ -1,0 +1,439 @@
+/* ==========================================================
+   Tomaticos Maruja · huerto
+   Cada planta es un bancal de madera con tierra; cada
+   ejemplar es una zanahoria que asoma de su montoncito.
+   ========================================================== */
+
+:root {
+    --cielo-alto: #a9d3e2;
+    --cielo: #d7ecf0;
+    --sol: #ffd45e;
+    --hierba-clara: #9ccb73;
+    --hierba: #5aa23d;
+    --hierba-oscura: #2f6b2a;
+    --tierra-oscura: #3a2418;
+    --tierra: #5b3b27;
+    --tierra-clara: #7d5538;
+    --madera-clara: #d9ab72;
+    --madera: #b98650;
+    --madera-oscura: #8a5d33;
+    --zanahoria: #f58a1f;
+    --zanahoria-oscura: #d96a0b;
+    --tomate: #d63b2f;
+    --papel: #fbf6e6;
+    --tinta: #2a1d14;
+
+    --fuente-titulo: "Bree Serif", Georgia, "Times New Roman", serif;
+    --fuente-texto: "Nunito", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: var(--fuente-texto);
+    line-height: 1.5;
+    color: var(--tinta);
+    background:
+            radial-gradient(circle at 86% 70px,
+            var(--sol) 0 38px,
+            rgba(255, 212, 94, .35) 38px 72px,
+            transparent 72px),
+            linear-gradient(180deg,
+            var(--cielo-alto) 0,
+            var(--cielo) 200px,
+            var(--hierba-clara) 200px,
+            #79b255 100%);
+    background-repeat: no-repeat;
+}
+
+:focus-visible {
+    outline: 3px solid #1b4f72;
+    outline-offset: 3px;
+}
+
+.bancal :focus-visible {
+    outline-color: #fff2a8;
+}
+
+/* ---------- Cartel de madera (título) ---------- */
+
+.cartel {
+    position: relative;
+    z-index: 1;
+    padding: 2rem 1rem 0;
+    text-align: center;
+}
+
+.cartel h1 {
+    position: relative;
+    display: inline-block;
+    margin: 0 0 2.5rem;
+    padding: .6rem 2rem .7rem;
+    font-family: var(--fuente-titulo);
+    font-weight: 400;
+    font-size: clamp(1.8rem, 6vw, 2.8rem);
+    color: #fff4dc;
+    text-shadow: 0 2px 0 var(--madera-oscura);
+    background:
+            repeating-linear-gradient(180deg,
+            transparent 0 14px,
+            rgba(80, 45, 15, .18) 14px 16px),
+            linear-gradient(var(--madera-clara), var(--madera));
+    border: 4px solid var(--madera-oscura);
+    border-radius: 12px;
+    box-shadow:
+            inset 0 2px 0 rgba(255, 255, 255, .3),
+            0 6px 0 var(--madera-oscura),
+            0 12px 18px rgba(0, 0, 0, .2);
+}
+
+/* Las dos estacas que sujetan el cartel */
+.cartel h1::before,
+.cartel h1::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    z-index: -1;
+    width: 14px;
+    height: 34px;
+    background: var(--madera-oscura);
+}
+
+.cartel h1::before { left: 18%; }
+.cartel h1::after  { right: 18%; }
+
+main {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 0 1.25rem 2rem;
+}
+
+/* ---------- Avisos ---------- */
+
+.aviso {
+    margin: 0 0 1.5rem;
+    padding: .8rem 1rem .8rem 1.1rem;
+    font-weight: 700;
+    background: var(--papel);
+    border-left: 8px solid var(--hierba-oscura);
+    border-radius: 8px;
+    box-shadow: 0 3px 0 rgba(0, 0, 0, .12);
+}
+
+.aviso--error {
+    color: #7d1f17;
+    border-left-color: var(--tomate);
+}
+
+/* ---------- Bancal (una planta) ---------- */
+
+.bancal {
+    position: relative;
+    margin: 0 0 2.6rem;
+    padding: 1rem 1.1rem 1.2rem;
+    background:
+            radial-gradient(circle at 12% 30%, rgba(0, 0, 0, .18) 0 2px, transparent 3px),
+            radial-gradient(circle at 70% 60%, rgba(255, 255, 255, .08) 0 2px, transparent 3px),
+            linear-gradient(180deg, var(--tierra-oscura), var(--tierra));
+    background-size: 38px 38px, 52px 52px, auto;
+    border: 10px solid var(--madera);
+    border-top-color: var(--madera-clara);
+    border-bottom-width: 18px;
+    border-radius: 16px;
+    box-shadow:
+            inset 0 8px 14px rgba(0, 0, 0, .35),
+            0 0 0 3px var(--madera-oscura),
+            0 14px 22px rgba(0, 0, 0, .25);
+}
+
+.bancal__cabecera {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+/* Etiqueta de papel clavada en la tierra */
+.etiqueta {
+    padding: .35rem .9rem .45rem;
+    background: var(--papel);
+    border-radius: 4px 4px 10px 10px;
+    box-shadow: 0 3px 0 rgba(0, 0, 0, .35);
+    transform: rotate(-1.5deg);
+}
+
+.etiqueta h2 {
+    margin: 0;
+    font-family: var(--fuente-titulo);
+    font-weight: 400;
+    font-size: 1.35rem;
+    line-height: 1.2;
+}
+
+.contador {
+    margin: 0;
+    font-size: .9rem;
+    color: #6b4a2f;
+}
+
+.contador b {
+    font-size: 1.15rem;
+    color: var(--zanahoria-oscura);
+}
+
+/* ---------- Botones ---------- */
+
+.btn-cosechar {
+    padding: .65rem 1.3rem;
+    font: 800 1rem var(--fuente-texto);
+    color: #fff;
+    cursor: pointer;
+    background: linear-gradient(var(--zanahoria), var(--zanahoria-oscura));
+    border: 0;
+    border-radius: 999px;
+    box-shadow: 0 4px 0 #a64f06, 0 8px 12px rgba(0, 0, 0, .3);
+    transition: transform .08s, box-shadow .08s;
+}
+
+.btn-cosechar:hover:not(:disabled) {
+    filter: brightness(1.07);
+}
+
+.btn-cosechar:active:not(:disabled) {
+    transform: translateY(3px);
+    box-shadow: 0 1px 0 #a64f06;
+}
+
+.btn-cosechar:disabled {
+    cursor: not-allowed;
+    background: #8c7766;
+    box-shadow: 0 4px 0 #5e4e41;
+    opacity: .7;
+}
+
+.btn-crear {
+    justify-self: start;
+    margin-top: 1rem;
+    background: linear-gradient(var(--hierba), var(--hierba-oscura));
+    box-shadow: 0 4px 0 #1f4a1b, 0 8px 12px rgba(0, 0, 0, .3);
+}
+
+.btn-crear:active:not(:disabled) {
+    box-shadow: 0 1px 0 #1f4a1b;
+}
+
+/* ---------- Zanahorias ---------- */
+
+.surcos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 .15rem;
+    margin-top: .2rem;
+    /* hueco por encima para que se vea cómo sale la zanahoria al cosechar */
+    padding-top: 4.2rem;
+}
+
+.zanahoria {
+    position: relative;
+    flex: 0 0 44px;
+    height: 84px;
+}
+
+/* Hojas + raíz se mueven juntas */
+.pieza {
+    position: absolute;
+    inset: 0;
+    transform-origin: 50% 80%;
+    animation: brotar .7s cubic-bezier(.2, .9, .3, 1.15) both;
+    animation-delay: calc(var(--i, 0) * 70ms);
+}
+
+.hojas {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 44px;
+    height: 42px;
+    margin-left: -22px;
+    background: linear-gradient(90deg, var(--hierba-oscura), var(--hierba) 50%, #7cc04f);
+    clip-path: polygon(46% 100%, 6% 34%, 30% 58%, 32% 4%, 48% 52%,
+    66% 0, 70% 56%, 94% 30%, 54% 100%);
+    transform-origin: 50% 100%;
+    animation: abrir .5s ease-out both;
+    animation-delay: calc(var(--i, 0) * 70ms + .4s);
+}
+
+.raiz {
+    position: absolute;
+    top: 36px;
+    left: 50%;
+    width: 28px;
+    height: 50px;
+    margin-left: -14px;
+    background:
+            repeating-linear-gradient(180deg,
+            transparent 0 9px,
+            rgba(150, 60, 0, .28) 9px 11px),
+            linear-gradient(90deg,
+            var(--zanahoria-oscura),
+            var(--zanahoria) 45%,
+            #ffb04f 70%,
+            var(--zanahoria));
+    clip-path: polygon(0 12%, 14% 0, 86% 0, 100% 12%, 60% 100%, 40% 100%);
+}
+
+/* Montoncito de tierra que tapa la mayor parte de la raíz */
+.monton {
+    position: absolute;
+    right: -2px;
+    bottom: 0;
+    left: -2px;
+    height: 28px;
+    background: radial-gradient(ellipse at 50% 0, var(--tierra-clara), var(--tierra) 75%);
+    border-radius: 50% 50% 8px 8px / 100% 100% 8px 8px;
+    box-shadow: inset 0 3px 0 rgba(255, 255, 255, .1);
+    transform-origin: 50% 100%;
+}
+
+.mas {
+    align-self: flex-end;
+    margin: 0 0 .3rem .6rem;
+    font-weight: 800;
+    color: #ffd9a0;
+}
+
+/* Al cosechar: sacude, tira hacia arriba y desaparece */
+.zanahoria.arrancando .pieza {
+    animation: arrancar .95s ease-in both;
+}
+
+.zanahoria.arrancando .hojas {
+    animation: none;
+}
+
+.zanahoria.arrancando .monton {
+    animation: hundir .4s .3s both;
+}
+
+@keyframes brotar {
+    from { transform: translateY(40px); }
+    to   { transform: none; }
+}
+
+@keyframes abrir {
+    from { transform: scale(.1); }
+    to   { transform: scale(1); }
+}
+
+@keyframes arrancar {
+    0%   { transform: none; }
+    15%  { transform: translateY(-3px) rotate(-5deg); }
+    30%  { transform: translateY(1px) rotate(5deg); }
+    55%  { transform: translateY(-42px) rotate(-3deg); opacity: 1; }
+    100% { transform: translateY(-80px) rotate(10deg); opacity: 0; }
+}
+
+@keyframes hundir {
+    to { transform: scaleY(.55); filter: brightness(.75); }
+}
+
+/* ---------- Estados vacíos ---------- */
+
+.vacio {
+    margin: .9rem 0 0;
+    padding: .7rem 1rem;
+    font-style: italic;
+    color: #f1dcc0;
+    background: rgba(0, 0, 0, .18);
+    border-radius: 8px;
+}
+
+.vacio--lista {
+    color: #1e3d12;
+    background: rgba(255, 255, 255, .55);
+}
+
+/* ---------- Pie: sobre de semillas ---------- */
+
+footer {
+    padding: 1rem 1rem 3rem;
+    text-align: center;
+}
+
+.semillas {
+    display: inline-block;
+    padding: .75rem 1.6rem .7rem;
+    font: 400 1.15rem var(--fuente-titulo);
+    color: var(--tierra-oscura);
+    text-decoration: none;
+    background: linear-gradient(#ffe9a8, #f6cf63);
+    border: 3px solid var(--tierra-oscura);
+    border-radius: 6px 6px 14px 14px;
+    box-shadow: 0 5px 0 var(--tierra-oscura);
+    transform: rotate(-1deg);
+    transition: transform .15s;
+}
+
+.semillas:hover {
+    transform: rotate(1deg) translateY(-2px);
+}
+
+/* ---------- Formulario de nueva planta ---------- */
+
+.formulario {
+    display: grid;
+    gap: .35rem;
+    margin: 0 0 2.6rem;
+    padding: 1.4rem;
+    background: var(--papel);
+    border: 4px solid var(--madera-oscura);
+    border-radius: 12px;
+    box-shadow: 0 6px 0 var(--madera-oscura), 0 14px 20px rgba(0, 0, 0, .2);
+}
+
+.formulario label {
+    margin-top: .6rem;
+    font-weight: 800;
+}
+
+.formulario input {
+    padding: .65rem .8rem;
+    font: inherit;
+    color: var(--tinta);
+    background: #fff;
+    border: 2px solid #b69a76;
+    border-radius: 8px;
+}
+
+.formulario input:focus {
+    border-color: var(--hierba-oscura);
+}
+
+/* ---------- Móvil y accesibilidad ---------- */
+
+@media (max-width: 520px) {
+    .bancal {
+        padding: .8rem .7rem 1rem;
+        border-width: 8px 8px 14px;
+    }
+
+    .zanahoria {
+        flex-basis: 40px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation: none !important;
+        transition: none !important;
+    }
+}

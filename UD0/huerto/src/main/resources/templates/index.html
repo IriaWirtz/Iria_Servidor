@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tomaticos Maruja</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bree+Serif&family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/estilos.css}">
+    <script th:src="@{/huerto.js}" defer></script>
+</head>
+<body>
+
+<header class="cartel">
+    <h1>Tomaticos Maruja</h1>
+</header>
+
+<main>
+    <div class="aviso aviso--error" role="alert" th:if="${error != null}">
+        <span th:text="${error}"></span>
+    </div>
+
+    <p class="aviso" th:if="${mensaje}" th:text="${mensaje}"></p>
+
+    <article class="bancal" th:each="planta : ${lista}">
+        <div class="bancal__cabecera">
+            <div class="etiqueta">
+                <h2 th:text="${planta.nombre}"></h2>
+                <p class="contador"><b th:text="${planta.ejemplares}"></b> ejemplares</p>
+            </div>
+
+            <form class="form-cosecha" th:method="post"
+                  th:action="@{/planta/{id}/cosechar(id=${planta.id})}">
+                <button type="submit" class="btn-cosechar"
+                        th:disabled="${planta.ejemplares <= 0}">Cosechar</button>
+            </form>
+        </div>
+
+        <!-- El th:if va en el contenedor: th:each se evalúa antes que th:if en el mismo elemento -->
+        <div class="surcos" th:if="${planta.ejemplares > 0}"
+             th:with="visibles=${planta.ejemplares > 30 ? 30 : planta.ejemplares}">
+            <span class="zanahoria" th:each="i : ${#numbers.sequence(1, visibles)}"
+                  th:style="'--i:' + ${i}">
+                <span class="pieza"><span class="hojas"></span><span class="raiz"></span></span>
+                <span class="monton"></span>
+            </span>
+            <span class="mas" th:if="${planta.ejemplares > 30}"
+                  th:text="'+' + ${planta.ejemplares - 30}"></span>
+        </div>
+
+        <p class="vacio" th:if="${planta.ejemplares <= 0}">
+            Sin ejemplares. La tierra está lista para volver a sembrar.
+        </p>
+    </article>
+
+    <p class="vacio vacio--lista" th:if="${#lists.isEmpty(lista)}">
+        Todavía no hay plantas en el huerto. Crea la primera con el sobre de semillas.
+    </p>
+</main>
+
+<footer>
+    <a class="semillas" th:href="@{/planta/nueva}">Crear planta nueva</a>
+</footer>
+
+</body>
+</html>

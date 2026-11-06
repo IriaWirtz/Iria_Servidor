@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Crear Planta</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bree+Serif&family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/estilos.css}">
+    <script th:src="@{/huerto.js}" defer></script>
+</head>
+<body>
+
+<header class="cartel">
+    <h1>Crear nueva planta</h1>
+</header>
+
+<main>
+    <form class="formulario" th:method="post" th:action="@{/planta/nueva}" th:object="${nuevaPlanta}">
+        <label for="nombre">Nombre</label>
+        <input type="text" name="nombre" id="nombre" required>
+
+        <label for="ejemplares">Ejemplares</label>
+        <input type="number" name="ejemplares" id="ejemplares" min="1" required>
+
+        <button type="submit" class="btn-cosechar btn-crear">Sembrar</button>
+    </form>
+
+    <!-- Vista previa: las zanahorias brotan según el número que escribas -->
+    <section class="bancal" aria-label="Vista previa del bancal">
+        <div class="bancal__cabecera">
+            <div class="etiqueta">
+                <h2 id="vista-nombre">Nueva planta</h2>
+            </div>
+        </div>
+        <div class="surcos" id="vista-surcos" hidden></div>
+        <p class="vacio" id="vista-vacio">Escribe cuántos ejemplares quieres y verás cómo brotan.</p>
+    </section>
+</main>
+
+<footer>
+    <a class="semillas" th:href="@{/}">Volver al huerto</a>
+</footer>
+
+</body>
+</html>

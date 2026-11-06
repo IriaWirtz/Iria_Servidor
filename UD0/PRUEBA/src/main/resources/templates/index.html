@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Animales</title>
+</head>
+<body>
+<header>
+    <h1>GRANJA DE PEPITO IA IA O</h1>
+</header>
+<p th:if="${mensaje}" th:text="${mensaje}"></p>
+<form th:action="@{/animal}" method="post"  th:object="${nuevoAnimal}">
+<label for="nombre"> Nombre del animal</label>
+    <br/>
+
+    <input type="text"  id="nombre" th:field="*{nombre}"/>
+
+    <button type="submit">Crear animal</button>
+    <span th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></span>
+
+</form>
+
+<h2>Listado de animales</h2>
+<ul th:each="animal : ${lista}">
+    <li th:text="${animal.nombre}"></li>
+
+</ul>
+
+</body>
+</html>

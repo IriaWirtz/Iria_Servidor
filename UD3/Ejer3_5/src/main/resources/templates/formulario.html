@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Nueva inscripción</title>
+</head>
+<body>
+
+<h1>Inscripción a una actividad</h1>
+
+<nav>
+    <a th:href="@{/inscripciones}">Ver inscripciones</a>
+    <a th:href="@{/inscripciones/nueva}">Nueva inscripción</a>
+</nav>
+
+<form th:action="@{/inscripciones}"
+      th:object="${inscripcion}"
+      method="post">
+
+    <p>
+        <label>Nombre:</label>
+        <input type="text" th:field="*{nombre}" required>
+    </p>
+
+    <p>
+        <label>Correo electrónico:</label>
+        <input type="email" th:field="*{correo}" required>
+    </p>
+
+    <p>
+        <label>Turno:</label>
+        <select th:field="*{turno}" required>
+            <option value="">Selecciona un turno</option>
+            <option value="Mañana">Mañana</option>
+            <option value="Tarde">Tarde</option>
+        </select>
+    </p>
+
+    <p>
+        <label>Comentarios:</label>
+        <textarea th:field="*{comentarios}"></textarea>
+    </p>
+
+    <p>
+        <input type="checkbox" th:field="*{aceptaNormas}">
+        Acepto las normas
+    </p>
+
+    <button type="submit">Inscribirme</button>
+</form>
+
+</body>
+</html>
